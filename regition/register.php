@@ -29,7 +29,7 @@
       </form>
       <div class="signup">
         <span class="signup">Already have an account?
-         <a href="login.php">Login</a>
+          <a href="login.php">Login</a>
         </span>
       </div>
     </div>

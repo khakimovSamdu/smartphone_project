@@ -7,7 +7,7 @@
     $email = $_POST['email'];
     $pasword = md5($_POST['parol']);
     $ret = [];
-    $sql = mysqli_query($link, "INSERT INTO cilent(first_name, last_name, username, email, password) VALUES ('$firstname', '$lastname', '$username', '$pasword');");
+    $sql = mysqli_query($link, "INSERT INTO cilent (first_name, last_name, username, email, password) VALUES ('$firstname', '$lastname', '$username', '$email', '$pasword');");
     if($sql){
         $ret+= ['xatolik'=>0, 'xabar'=>"Muvaffaqiyatli yozildi"];
         echo "Ma'lumot yozildi";
@@ -19,5 +19,5 @@
     mysqli_close($link);
     $arr = [$firstname, $lastname, $username, $email, $pasword];
     echo "<br>". json_encode($arr)."<br>";
-    // echo json_encode($ret);
+    echo json_encode($ret);
 ?>
