@@ -17,7 +17,7 @@
   <div class="container">
     <div class="registration form">
       <header>Signup</header>
-      <form action="reg.php" method="POST" id = 'regform'>
+      <form action="adduser.php" method="POST" id = 'regform'>
         <input type="text" name="ism" placeholder="Enter your firstname" required>
         <input type="text" name="fam" placeholder="Enter your lastname" required>
         <input type="text" name="login" placeholder="Enter your username" required>
@@ -51,7 +51,7 @@
             return 0;
         }
         $.ajax({
-            url:'reg.php',
+            url:'adduser.php',
             method:'POST',
             data:$('#regform').serialize(),
             success:function(data){
