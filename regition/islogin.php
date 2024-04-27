@@ -5,9 +5,17 @@
     
     $sql = mysqli_query($link, "SELECT * FROM cilent WHERE username='$login' AND password='$parol'");
     $user = mysqli_fetch_assoc($sql);
+    $db = new CILENT();
+    $user = $db->getdata('cilent', ['username'=>$login, 'password'=>$parol]);
+    $ret = [];
+
     if ($user['id']>0){
-        echo "Login va parol to'g'ri";
+        $ret += ['xatolik'=>0, 'xabar'=>"Siz tizimga kirdingiz"];
     }else{
-        echo "Login yoki parol xato!";
+        // echo "Login yoki parol xato!";
+        $ret += ['xatolik'=>1, 'xabar'=>"Login yoki parol xato!"];
+
     }
+
+    echo json_encode($ret);
 ?>

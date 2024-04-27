@@ -6,15 +6,17 @@
     $username = $_POST['login'];
     $email = $_POST['email'];
     $pasword = md5($_POST['parol']);
-    $ret = [];
+    $reg = [];
     $sql = mysqli_query($link, "INSERT INTO cilent (first_name, last_name, username, email, password) VALUES ('$firstname', '$lastname', '$username', '$email', '$pasword');");
     if($sql){
         $ret+= ['xatolik'=>0, 'xabar'=>"Muvaffaqiyatli yozildi"];
-        echo "Sizning ma'lumotingiz bazaga qo'shildi";
+        echo "Ma'lumot yozildi";
     }else{
         $ret += ["xatolik"=>1, 'xabar'=>'Yozilmadi'];
-        echo "Sizning ma'lumotingiz bazaga qo'shilmadi";
+        echo "Yozilmadi";
     }
     mysqli_close($link);
+    $arr = [$firstname, $lastname, $username, $email, $pasword];
+    echo "<br>". json_encode($arr)."<br>";
     echo json_encode($ret);
 ?>
