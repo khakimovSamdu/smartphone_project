@@ -12,7 +12,7 @@
             <header>Login</header>
             <form action="check.php" method="POST" id = 'logform'>
                 <input type="text" name = 'login' placeholder="Enter your username" required>
-                <input type="password" name='parol' placeholder="Enter your password" required>
+                <input type="password" name='parol' placeholder="Enter your password" id = "pass" required>
                 <button type="submit">Kirish</button>
             </form>
             <div class="signup">
@@ -22,8 +22,8 @@
             </div>
         </div>
     </div>
-    <script src="js/jquery-3.6.0.min.js"></script>
-    <script src="js/sweetalert.min.js"></script>
+    <script src="../js/jquery-3.6.0.min.js"></script>
+    <script src="../js/sweetalert.min.js"></script>
     
     <script type="text/javascript">
         $('#logform').submit(function(e){
@@ -34,16 +34,17 @@
                 method:"POST",
                 data:malumot,
                 success:function(data){
-                    console.log(data);
-                    let obj = jquery.parseJSON(data);
+                    // console.log(data);
+                    let obj = jQuery.parseJSON(data);
                     if (obj.xatolik==0){
                         swal("Good job!", obj.xabar, "success");
                     }else{
+                        $('#pass').val('');
                         swal("Xatolik!", obj.xabar, "error");
                     }
                 },
                 error:function(){
-                    alert("Xatolik yuz berdi!");
+                    swal("Xatolik yuz berdi!", "Serverda xatolik!");
                 }
             });
         })
