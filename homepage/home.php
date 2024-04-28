@@ -1,3 +1,4 @@
+<?php include_once '../regition/config.php';?>
 <!DOCTYPE html>
 <!-- Coding By CodingNepal - www.codingnepalweb.com -->
 <html lang="en">
@@ -7,6 +8,8 @@
   <title>Smartphone shops</title>
   <link rel="stylesheet" href="home.css">
   <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+
 </head>
 <body>
     <header>
@@ -73,30 +76,49 @@
       </div>
     </header>
 
-    <section class="hero-section"></section>
+    <section class="hero-section">
+      <table class="table table-striped table-dark table-bordered table-hover" style="margin-top:20px;">
+        <tr>
+          <th>№</th>
+          <th>Name</th>
+          <th>Company</th>
+          <th>Color</th>
+          <th>RAM</th>
+          <th>Memory</th>
+          <th>Price</th>
+        </tr>
+        <?php
+          $query = "SELECT * FROM `product`;";
+          $sql = mysqli_query($link, $query);
+          $i = 0;
+          while($fetch = mysqli_fetch_assoc($sql)){
+        ?>
+              <tr id='f<?= $fetch['id']?>'>
+                  <td><?= ++$i?></td>
+                  <td><?= $fetch['name']?></td>
+                  <td><?=$fetch['company']?></td>
+                  <td><?=$fetch['color']?></td>
+                  <td><?=$fetch['RAM']?></td>
+                  <td><?=$fetch['memory']?></td>
+                  <td><?=$fetch['price']?></td>
+              </tr>
+            <?
+          }
+            ?>
+        
+      </table>
+    </section>
 
     <section class="shop-section">
       <div class="shop-images">
         <div class="shop-link">
           <h3>Shop Laptops &amp; Tables</h3>
-          <img src="images/img-1.png" alt="card">
+          
           <a href="#">Shop now</a>
         </div>
-        <div class="shop-link">
-          <h3>Shop Smartwatches</h3>
-          <img src="images/img-2.png" alt="card">
-          <a href="#">Shop now</a>
-        </div>
-        <div class="shop-link">
-          <h3>Create with Strip Lights</h3>
-          <img src="images/img-3.png" alt="card">
-          <a href="#">Shop now</a>
-        </div>
-        <div class="shop-link">
-          <h3>Home Refresh Ideas</h3>
-          <img src="images/img-4.png" alt="card">
-          <a href="#">Shop now</a>
-        </div>
+        
+        
+        
       </div>
     </section>
 

@@ -28,7 +28,8 @@
         <input type="password" name="parol" placeholder="Create a password" id = 'pas1' required>
         <input type="password" name="configparol" placeholder="Confirm your password" id = 'pas2' required>
         <p id='mesg' style="font-size:14px; color:red;"></p>
-        <a id = 'home' href="../homepage/home.php"><button type="submit">Ro'yxatdan o'tish</button></a>
+        <button type="submit">Ro'yxatdan o'tish</button>
+        <a id='lnk' href="../homepage/home.php">homepage</a>
       </form>
       <div class="signup">
         <span class="signup">Already have an account?
