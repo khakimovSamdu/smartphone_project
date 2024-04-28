@@ -1,4 +1,4 @@
-~<?php
+<?php
     include_once 'config.php';
 
     $firstname = $_POST['ism'];
@@ -6,17 +6,17 @@
     $username = $_POST['login'];
     $email = $_POST['email'];
     $pasword = md5($_POST['parol']);
-    $reg = [];
+    $ret = [];
     $sql = mysqli_query($link, "INSERT INTO cilent (first_name, last_name, username, email, password) VALUES ('$firstname', '$lastname', '$username', '$email', '$pasword');");
     if($sql){
-        $ret+= ['xatolik'=>0, 'xabar'=>"Muvaffaqiyatli yozildi"];
-        echo "Ma'lumot yozildi";
+        $ret+= ['xatolik'=>0, 'xabar'=>"Muvaffaqiyatli ro'yxatdan o'tdingiz"];
+        // echo "Ma'lumot yozildi";
     }else{
-        $ret += ["xatolik"=>1, 'xabar'=>'Yozilmadi'];
-        echo "Yozilmadi";
+        $ret += ['xatolik'=>1, 'xabar'=>"Ro'yxatdan o'taolmadingiz"];
+        // echo "Yozilmadi";
     }
     mysqli_close($link);
-    $arr = [$firstname, $lastname, $username, $email, $pasword];
-    echo "<br>". json_encode($arr)."<br>";
+    // $arr = [$firstname, $lastname, $username, $email, $pasword];
+    // echo "<br>". json_encode($arr)."<br>";
     echo json_encode($ret);
 ?>

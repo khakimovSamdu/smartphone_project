@@ -15,6 +15,19 @@
     // print_r($link);
 
     class CILENT{
+        private $host = "localhost"; 
+		private $user = "root";
+		private $parol = "";
+		private $db_name = "phone_project";
+		private $link;
+
+		function __construct()
+		{
+			$this->link = mysqli_connect($this->host,$this->user,$this->parol,$this->db_name);
+			if(!$this->link){
+				exit('Baza bilan bog\'lanmadi');
+			}
+		}
         public function getdata($table,$arr,$cond="no")
 		{
 			$sql = "SELECT * FROM ".$table." WHERE ";

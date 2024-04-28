@@ -5,9 +5,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Regition</title>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
-
+    <!-- <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+     -->
     <!---Custom CSS File--->
     <link rel="stylesheet" href="styles.css">
     <style type="text/css">
@@ -24,12 +23,12 @@
         <input type="text" name="ism" placeholder="Enter your firstname" required>
         <input type="text" name="fam" placeholder="Enter your lastname" required>
         <input type="text" name="login" placeholder="Enter your username" id = "lgn" required>
-        <p id="helpblock" style="color:red; font-size: 14px; display: none; padding:none; margin-buttom:none;"></p>
+        <p id="helpblock" style="color:red; font-size: 14px; display: none; padding:none;"></p>
         <input type="email" name="email" placeholder="Enter your email" required>
         <input type="password" name="parol" placeholder="Create a password" id = 'pas1' required>
         <input type="password" name="configparol" placeholder="Confirm your password" id = 'pas2' required>
         <p id='mesg' style="font-size:14px; color:red;"></p>
-        <button type="submit">Ro'yxatdan o'tish</button>
+        <a id = 'home' href="../homepage/home.php"><button type="submit">Ro'yxatdan o'tish</button></a>
       </form>
       <div class="signup">
         <span class="signup">Already have an account?
@@ -87,7 +86,6 @@
                 let obj = jQuery.parseJSON(data);
                 if (obj.xatolik == 0){
                     swal("Good job!", obj.xabar, "success");
-      
                 }
                 else{
                     swal("Xatolik!", obj.xabar, "error");
@@ -97,7 +95,7 @@
                 alert('Xatolik yuz berdi');
             }
         });
-
+        // console.log("salom");
       })
     </script>
 </body>
