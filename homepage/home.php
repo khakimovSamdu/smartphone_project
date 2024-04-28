@@ -86,6 +86,7 @@
           <th>RAM</th>
           <th>Memory</th>
           <th>Price</th>
+          <th>Amal</th>
         </tr>
         <?php
           $query = "SELECT * FROM `product`;";
@@ -101,6 +102,7 @@
                   <td><?=$fetch['RAM']?></td>
                   <td><?=$fetch['memory']?></td>
                   <td><?=$fetch['price']?></td>
+                  <td ><button class = "btn btn-lg btn-primary" onclick="product_update(<?=$fetch['id']?>)">Update</button> <button class = "btn btn-lg btn-danger delete">Delete</button></td>
               </tr>
             <?
           }
@@ -111,11 +113,6 @@
 
     <section class="shop-section">
       <div class="shop-images">
-        <div class="shop-link">
-          <h3>Shop Laptops &amp; Tables</h3>
-          
-          <a href="#">Shop now</a>
-        </div>
         
         
         
@@ -159,6 +156,20 @@
         </ul>
       </div>
     </footer>
+    <script type = "text/javascript">
+        function product_update(id){
+            $.get("get-product-info.php?id="+id, function(data, status){
+                $('#editform').toggleClass('formoc');
+                var obj = jQuery.parseJSON(data);
+                $('#up_name').val(obj.name);
+                $("#up_company").val(obj.company);
+                $('#up_color').val(obj.color);
+                $('#up_ram').val(obj.RAM);
+                $('#up_memory').val(obj.memory);
+                $('#up_price').val(obj.price);
+            });
+        }
+    </script>
 
 </body>
 </html>
