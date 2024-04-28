@@ -94,7 +94,7 @@
           $i = 0;
           while($fetch = mysqli_fetch_assoc($sql)){
         ?>
-              <tr id='f<?= $fetch['id']?>'>
+              <tr id='t<?= $fetch['id']?>'>
                   <td><?= ++$i?></td>
                   <td><?= $fetch['name']?></td>
                   <td><?=$fetch['company']?></td>
@@ -102,7 +102,8 @@
                   <td><?=$fetch['RAM']?></td>
                   <td><?=$fetch['memory']?></td>
                   <td><?=$fetch['price']?></td>
-                  <td ><button class = "btn btn-lg btn-primary" onclick="product_update(<?=$fetch['id']?>)">Update</button> <button class = "btn btn-lg btn-danger delete">Delete</button></td>
+                  <td ><button class = "btn btn-lg btn-primary" onclick="product_update(<?=$fetch['id']?>)"><a style="text-decoration: none;color:white" href="product-update.php?id=<?=$fetch['id']?>">Update</a></button> 
+                  <button class = "btn btn-lg btn-danger delete" id = "<?=$fetch['id']?>" >Delete</button></td>
               </tr>
             <?
           }
@@ -157,18 +158,58 @@
       </div>
     </footer>
     <script type = "text/javascript">
-        function product_update(id){
-            $.get("get-product-info.php?id="+id, function(data, status){
-                $('#editform').toggleClass('formoc');
-                var obj = jQuery.parseJSON(data);
-                $('#up_name').val(obj.name);
-                $("#up_company").val(obj.company);
-                $('#up_color').val(obj.color);
-                $('#up_ram').val(obj.RAM);
-                $('#up_memory').val(obj.memory);
-                $('#up_price').val(obj.price);
-            });
-        }
+        // function product_update(id){
+        //     $.get("get-product-info.php?id="+id, function(data, status){
+        //         $('#editform').toggleClass('formoc');
+        //         var obj = jQuery.parseJSON(data);
+        //         $('#up_name').val(obj.name);
+        //         $("#up_company").val(obj.company);
+        //         $('#up_color').val(obj.color);
+        //         $('#up_ram').val(obj.RAM);
+        //         $('#up_memory').val(obj.memory);
+        //         $('#up_price').val(obj.price);
+        //     });
+        // }
+
+          $('.delete').click(function(){
+              let id = $(this).attr("id");
+              swal({
+                  title:"Ishonchingiz komilmi?",
+                  text:"O'chirilgandan so'ng tiklab bo'lmaydi.",
+                  icon:"warning",
+                  buttons:{
+                      cancel:"Yo'q!",
+                      catch:{
+                          text:"Ha roziman!",
+                          value:"qabul",
+                      },
+                  },
+              })
+              .then((willDelete) => {
+                  if(willDelete == "qabul"){
+                      $.ajax({
+                          url:'delete.php',
+                          type:"GET",
+                          data:{
+                            id:id,
+                          },
+                          success:function(data){
+                              var obj = jQuery.parseJSON(data);
+                              if (obj.xatolik == 0){
+                                  $('#t'+id).remove();
+                                  swal("Bajarildi", obj.xabar, "success");
+                          
+                              }
+                          },
+                          error:function(xhr){
+                              alert("Kechirasiz serverda xatolik yuz berdi qaytadan urinib ko'ring");
+                          },
+                      });
+                  }else{
+                      swal("Bekor qilindi!");
+                  }
+              });
+          })
     </script>
 
 </body>
