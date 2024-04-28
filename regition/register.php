@@ -70,7 +70,7 @@
 
         let p1 = $('#pas1').val();
         let p2 = $('#pas2').val();
-        console.log(p1);
+        // console.log(p1);
         
         if (p1 != p2){
             $('#mesg').html('Parollar mos emas');
@@ -83,11 +83,11 @@
             method:'POST',
             data:$('#regform').serialize(),
             success:function(data){
-                console.log(data);
+                // console.log(data);
                 let obj = jQuery.parseJSON(data);
                 if (obj.xatolik == 0){
                     swal("Good job!", obj.xabar, "success");
-                    
+      
                 }
                 else{
                     swal("Xatolik!", obj.xabar, "error");
